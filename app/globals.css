@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plex-mono), ui-monospace, monospace;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -53,10 +53,12 @@
 }
 
 body {
-  font-family: var(--font-mono);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 :root {
+  --editor-line-height: 24px;
+  --editor-font-size: 14px;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -88,6 +90,55 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Code-editor vertical rhythm: one row = one line number */
+.editor-content {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
+}
+
+.editor-content * {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Wrapped body copy: each visual line is exactly one gutter row */
+.editor-prose {
+  margin: 0;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: var(--editor-font-size);
+  font-weight: 500;
+  line-height: var(--editor-line-height);
+}
+
+/* Hero / section titles that span exactly 2 gutter rows */
+.editor-title-2 {
+  margin: 0;
+  height: calc(var(--editor-line-height) * 2);
+  overflow: hidden;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: calc(var(--editor-line-height) * 2);
+}
+
+@media (min-width: 768px) {
+  .editor-title-2 {
+    font-size: 28px;
+  }
+}
+
+/* Shared section padding */
+.editor-section {
+  padding: 32px 16px;
+}
+
+@media (min-width: 768px) {
+  .editor-section {
+    padding: 48px 32px;
+  }
 }
 
 .dark {
@@ -129,6 +180,6 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono;
   }
 }

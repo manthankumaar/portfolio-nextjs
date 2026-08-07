@@ -1,29 +1,23 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { EDITOR_LINE_HEIGHT } from '@/lib/editor';
 
 interface LineNumbersProps {
-  contentRef?: React.RefObject<HTMLDivElement | null>;
+  measureRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-export function LineNumbers({ contentRef }: LineNumbersProps) {
-  const [lineCount, setLineCount] = useState(354);
+export function LineNumbers({ measureRef }: LineNumbersProps) {
+  const [lineCount, setLineCount] = useState(50);
 
   useEffect(() => {
     const calculateLines = () => {
-      const scrollableContent = contentRef?.current;
-      if (scrollableContent) {
-        const height = scrollableContent.scrollHeight;
-        const lines = Math.ceil(height / 22);
-        setLineCount(lines);
-      } else {
-        const mainElement = document.querySelector('main');
-        if (mainElement) {
-          const height = mainElement.scrollHeight;
-          const lines = Math.ceil(height / 22);
-          setLineCount(lines);
-        }
-      }
+      const measureTarget = measureRef?.current;
+      if (!measureTarget) return;
+
+      const height = measureTarget.offsetHeight;
+      const lines = Math.max(1, Math.ceil(height / EDITOR_LINE_HEIGHT));
+      setLineCount(lines);
     };
 
     calculateLines();
@@ -32,53 +26,38 @@ export function LineNumbers({ contentRef }: LineNumbersProps) {
       calculateLines();
     });
 
-    const targetElement = contentRef?.current || document.querySelector('main');
-    if (targetElement) {
-      resizeObserver.observe(targetElement);
+    const measureTarget = measureRef?.current;
+    if (measureTarget) {
+      resizeObserver.observe(measureTarget);
     }
 
     window.addEventListener('resize', calculateLines);
-    
+
+    const timeoutId = window.setTimeout(calculateLines, 100);
+    const timeoutId2 = window.setTimeout(calculateLines, 500);
+
     return () => {
       resizeObserver.disconnect();
       window.removeEventListener('resize', calculateLines);
+      window.clearTimeout(timeoutId);
+      window.clearTimeout(timeoutId2);
     };
-  }, [contentRef]);
+  }, [measureRef]);
 
   return (
     <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        overflowY: 'hidden',
-        background: 'transparent',
-      }}
+      aria-hidden
+      className='h-full w-full bg-transparent font-mono'
+      style={{ fontSize: 11 }}
     >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          paddingRight: '8px',
-          boxSizing: 'border-box',
-        }}
-      >
+      <div className='box-border flex flex-col items-end pr-1 md:pr-2'>
         {Array.from({ length: lineCount }, (_, i) => (
           <span
             key={i + 1}
+            className='select-none whitespace-pre text-right font-mono text-[10px] font-normal text-[#9d9d9d] md:text-[11px]'
             style={{
-              height: '22px',
-              lineHeight: '22px',
-              color: 'rgb(157, 157, 157)',
-              whiteSpace: 'pre',
-              fontFamily: 'var(--font-mono), monospace',
-              fontSize: '11px',
-              letterSpacing: '0em',
-              fontWeight: 400,
-              fontStyle: 'normal',
-              textAlign: 'right',
-              userSelect: 'none',
+              height: EDITOR_LINE_HEIGHT,
+              lineHeight: `${EDITOR_LINE_HEIGHT}px`,
             }}
           >
             {i + 1}
@@ -88,4 +67,3 @@ export function LineNumbers({ contentRef }: LineNumbersProps) {
     </div>
   );
 }
-

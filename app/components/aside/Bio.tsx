@@ -1,9 +1,5 @@
-export function Bio() {
-  return (
-    <p>
-      I&apos;m a passionate UI/UX designer and front-end developer focused on
-      detail.
-    </p>
-  );
-}
+import { profile } from '@/lib/portfolio';
 
+export function Bio() {
+  return <p>{profile.bio}</p>;
+}

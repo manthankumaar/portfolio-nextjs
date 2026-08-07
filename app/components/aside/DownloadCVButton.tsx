@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { HyperText } from '@/components/ui/hyper-text';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { profile } from '@/lib/portfolio';
 
 export function DownloadCVButton() {
   return (
@@ -11,7 +12,7 @@ export function DownloadCVButton() {
         className='pr-0 h-[42px] py-0 gap-5'
         asChild
       >
-        <Link href='https://drive.google.com/file/d/1B1F2L26gFwUh8vo4zGxipzP0LBsW9hK9/view?usp=sharing'>
+        <Link href={profile.cvPath} target='_blank' rel='noopener noreferrer'>
           <HyperText className='w-full text-sm'>Download CV</HyperText>
           <span className='bg-border rounded-md p-2 h-full'>
             <ArrowDownTrayIcon className='size-5' />
@@ -21,4 +22,3 @@ export function DownloadCVButton() {
     </div>
   );
 }
-

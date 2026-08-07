@@ -1,17 +1,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { profile } from '@/lib/portfolio';
 
 export function BasicDetails() {
   return (
     <div className='flex items-center gap-2'>
       <Avatar>
-        <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarImage src={profile.avatar} alt={profile.name} />
+        <AvatarFallback>{profile.avatarFallback}</AvatarFallback>
       </Avatar>
       <div className='flex flex-col'>
-        <p>Manthan Kumar</p>
-        <p className='text-xs text-white/50'>Software Engineer</p>
+        <p>{profile.name}</p>
+        <p className='text-xs text-white/50'>{profile.title}</p>
       </div>
     </div>
   );
 }
-

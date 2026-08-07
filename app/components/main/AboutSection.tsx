@@ -3,243 +3,262 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import { HyperText } from '@/components/ui/hyper-text';
+import { Github, Linkedin } from 'lucide-react';
+import {
+  EditorBlank,
+  EditorComment,
+  EditorLine,
+  SnapToGrid,
+} from '@/app/components/editor/EditorLine';
+import { education, experience, profile } from '@/lib/portfolio';
+
+const slashDecoration = Array.from({ length: 25 }, () => '/').join('');
+const slashDecorationMobile = Array.from({ length: 12 }, () => '/').join('');
+
+const socialIcons = {
+  LinkedIn: Linkedin,
+  GitHub: Github,
+} as const;
 
 export function AboutSection() {
   return (
-    <section id='about-me' className='px-8 py-12'>
-      <div className='opacity-100'>
-        <div className='mb-12'>
-          <div className='flex items-start justify-between mb-16'>
-            <div>
-              <motion.h2
-                className='text-[98px] font-extrabold leading-[0.8em] uppercase text-[#2b2b2b]'
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 200 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              >
-                Since
-              </motion.h2>
-              <h2 className='text-[39px] leading-[0.8em] text-[#2b2b2b] font-mono'>
-                /////////////////////////
-              </h2>
-            </div>
-            <div className='text-right'>
-              <h2 className='text-[39px] leading-[0.8em] text-[#2b2b2b] font-mono'>
-                /////////////////////////
-              </h2>
-              <motion.h2
-                className='text-[139px] font-extrabold leading-[0.8em] uppercase text-[#2b2b2b]'
-                initial={{ opacity: 0, x: 60 }}
-                whileInView={{ opacity: 1, x: -200 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              >
-                2023
-              </motion.h2>
-            </div>
-          </div>
-
-          <div className='mb-12'>
-            <div className='flex items-center gap-2 mb-6'>
-              <p className='text-[#666] font-mono text-xs font-medium'>
-                &lt;!--
-              </p>
-              <HyperText
-                as='p'
-                startOnView={true}
-                className='text-[#666] font-mono text-xs font-medium select-none pointer-events-none whitespace-nowrap'
-              >
-                About me section
-              </HyperText>
-              <p className='text-[#666] font-mono text-xs font-medium'>
-                --&gt;
-              </p>
-            </div>
-            <h2 className='text-white text-4xl font-medium mb-8'>
-              Inside My <span className='text-[#b1b1b1]'>Creative Core</span>
+    <section id='about-me' className='editor-section'>
+      <SnapToGrid>
+        <div className='mb-8 flex w-full items-start justify-between md:mb-12'>
+          <div className='shrink-0 text-right'>
+            <motion.h2
+              className='editor-display h-12 font-mono text-[40px] font-extrabold uppercase leading-[48px] text-[#2b2b2b] md:h-24 md:text-[72px] md:leading-[96px]'
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
+              Since
+            </motion.h2>
+            <h2 className='editor-display h-6 font-mono text-[24px] leading-[24px] text-[#2b2b2b] md:h-12 md:text-[48px] md:leading-[48px]'>
+              <span className='md:hidden'>{slashDecorationMobile}</span>
+              <span className='hidden md:inline'>{slashDecoration}</span>
             </h2>
           </div>
-
-          <div className='grid md:grid-cols-2 gap-8 mb-8'>
-            <div>
-              <p className='text-[#9d9d9d] font-mono text-base font-medium leading-[1.4em]'>
-                I&apos;m a{' '}
-                <span
-                  className='px-[2px]'
-                  style={{
-                    background: 'rgba(247, 244, 190, 0.2)',
-                    color: 'rgb(247, 244, 190)',
-                  }}
-                >
-                  UI/UX Designer and Front-End Developer
-                </span>{' '}
-                with a passion for crafting visually appealing and highly
-                functional digital experiences. With a strong foundation in
-                design principles and an eye for detail, I create intuitive
-                interfaces that are both user-friendly and conversion-focused.
-              </p>
-            </div>
-            <div>
-              <p className='text-[#9d9d9d] font-mono text-base font-medium leading-[1.4em]'>
-                I enjoy collaborating with teams, solving real-world problems,
-                and{' '}
-                <span
-                  className='px-[2px]'
-                  style={{
-                    background: 'rgba(247, 244, 190, 0.2)',
-                    color: 'rgb(247, 244, 190)',
-                  }}
-                >
-                  turning complex ideas
-                </span>{' '}
-                into clean, engaging designs.
-              </p>
-            </div>
-          </div>
-
-          <div className='mb-12'>
-            <Link
-              href='https://drive.google.com/file/d/1HgeXhJrCWI1j5IEVzwFlJhtRqERnTk46/view'
-              target='_blank'
-              rel='noopener'
-              className='inline-flex items-center gap-4 border border-[#2b2b2b] px-6 py-4 hover:opacity-90 transition-opacity'
+          <div className='ml-auto shrink-0 text-left'>
+            <h2 className='editor-display h-6 font-mono text-[24px] leading-[24px] text-[#2b2b2b] md:h-12 md:text-[48px] md:leading-[48px]'>
+              <span className='md:hidden'>{slashDecorationMobile}</span>
+              <span className='hidden md:inline'>{slashDecoration}</span>
+            </h2>
+            <motion.h2
+              className='editor-display h-[72px] font-mono text-[64px] font-extrabold uppercase leading-[72px] text-[#2b2b2b] md:h-36 md:text-[120px] md:leading-[144px]'
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <span className='text-white font-mono text-sm font-semibold'>
-                Download CV
-              </span>
-              <div className='bg-[#2b2b2b] p-2'>
-                <svg
-                  width='17'
-                  height='18'
-                  viewBox='0 0 17 18'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M8.5 12V1M8.5 12L4 7.5M8.5 12L13 7.5M1 17H16'
-                    stroke='white'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-              </div>
-            </Link>
+              {profile.sinceYear}
+            </motion.h2>
           </div>
+        </div>
+      </SnapToGrid>
 
-          <div id='experience' className='mb-12'>
-            <div className='flex items-center gap-2 mb-6'>
-              <p className='text-[#666] font-mono text-xs font-medium'>
-                &lt;!--
-              </p>
-              <p className='text-[#666] font-mono text-xs font-medium select-none pointer-events-none whitespace-nowrap'>
-                In a previous life
-              </p>
-              <p className='text-[#666] font-mono text-xs font-medium'>
-                --&gt;
-              </p>
-            </div>
+      <EditorComment>About me section</EditorComment>
+      <EditorBlank />
+      <h2 className='editor-title-2 text-white'>
+        {profile.aboutHeadline}{' '}
+        <span className='text-[#b1b1b1]'>{profile.aboutHeadlineAccent}</span>
+      </h2>
+      <EditorBlank />
 
-            <div className='space-y-0'>
-              {[
-                {
-                  period: '2023 - present',
-                  role: 'Senior UI/UX Designer',
-                  company: 'Creative Studio',
-                },
-                {
-                  period: '2018 – 2023',
-                  role: 'UI/UX Designer',
-                  company: 'PixelWebForge',
-                },
-                {
-                  period: '2015 – 2018',
-                  role: 'Front-End Developer',
-                  company: 'WebNexa',
-                },
-                {
-                  period: '2013 – 2015',
-                  role: 'Junior Web Designer',
-                  company: 'Startix Media',
-                },
-              ].map((exp, index) => (
-                <div
-                  key={index}
-                  className='border-b border-[#2b2b2b] py-4 flex flex-col md:flex-row md:items-center gap-4'
-                >
-                  <p className='text-[rgb(247,244,190)] font-mono text-sm font-medium'>
-                    {exp.period}
-                  </p>
-                  <p className='text-white font-mono text-sm font-medium'>
-                    {exp.role}
-                  </p>
-                  <p className='text-[#9d9d9d] font-mono text-sm font-medium'>
-                    {exp.company}
+      <SnapToGrid>
+        <div className='grid gap-6 md:grid-cols-2'>
+          {profile.aboutParagraphs.map((paragraph) => (
+            <p key={paragraph.highlight} className='editor-prose text-[#9d9d9d]'>
+              {paragraph.before}
+              <span
+                className='px-0.5'
+                style={{
+                  background: 'rgba(247, 244, 190, 0.2)',
+                  color: 'rgb(247, 244, 190)',
+                }}
+              >
+                {paragraph.highlight}
+              </span>
+              {paragraph.after}
+            </p>
+          ))}
+        </div>
+      </SnapToGrid>
+      <EditorBlank lines={2} />
+
+      <SnapToGrid className='mb-8 md:mb-12'>
+        <Link
+          href={profile.cvPath}
+          target='_blank'
+          rel='noopener'
+          className='inline-flex h-12 items-center gap-4 border border-[#2b2b2b] px-4 transition-opacity hover:opacity-90 sm:px-6'
+        >
+          <span className='font-mono text-[13px] font-semibold leading-6 text-white'>
+            Download CV
+          </span>
+          <div className='bg-[#2b2b2b] p-2'>
+            <svg
+              width='17'
+              height='18'
+              viewBox='0 0 17 18'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M8.5 12V1M8.5 12L4 7.5M8.5 12L13 7.5M1 17H16'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </div>
+        </Link>
+      </SnapToGrid>
+
+      <div id='experience'>
+        <EditorComment>Experience</EditorComment>
+        <EditorBlank />
+        <EditorLine className='text-white'>
+          Career timeline —{' '}
+          <span
+            className='px-0.5'
+            style={{
+              background: 'rgba(247, 244, 190, 0.2)',
+              color: 'rgb(247, 244, 190)',
+            }}
+          >
+            impact-focused roles
+          </span>
+        </EditorLine>
+        <EditorBlank />
+
+        <SnapToGrid>
+          <div className='flex flex-col gap-6'>
+            {experience.map((exp, index) => (
+              <motion.article
+                key={`${exp.company}-${exp.period}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className='border border-[#2b2b2b] bg-[#181818] shadow-[inset_3px_0_0_0_rgb(247,244,190)]'
+              >
+                <div className='flex flex-col gap-3 border-b border-[#2b2b2b] px-4 py-4 sm:flex-row sm:items-start sm:justify-between sm:px-5'>
+                  <div className='min-w-0'>
+                    <p className='font-mono text-[11px] font-medium uppercase tracking-wide text-[rgb(247,244,190)]'>
+                      {exp.highlight}
+                    </p>
+                    <h3 className='mt-1 font-mono text-base font-semibold text-white sm:text-lg'>
+                      {exp.role}{' '}
+                      <span className='text-[#9d9d9d]'>@ {exp.company}</span>
+                    </h3>
+                    <p className='mt-1 font-mono text-xs text-[#9d9d9d] sm:text-sm'>
+                      {exp.period} · {exp.location}
+                    </p>
+                  </div>
+                  <p className='max-w-md font-mono text-xs leading-5 text-[#b1b1b1] sm:text-right sm:text-sm sm:leading-6'>
+                    {exp.summary}
                   </p>
                 </div>
-              ))}
-            </div>
+
+                <ul className='space-y-2 px-4 py-4 sm:px-5'>
+                  {exp.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className='flex gap-3 font-mono text-xs leading-5 text-[#9d9d9d] sm:text-sm sm:leading-6'
+                    >
+                      <span
+                        className='mt-2 h-1 w-1 shrink-0 rounded-full'
+                        style={{ backgroundColor: 'rgb(247, 244, 190)' }}
+                        aria-hidden
+                      />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className='flex flex-wrap gap-2 border-t border-[#2b2b2b] px-4 py-3 sm:px-5'>
+                  {exp.tech.map((tag) => (
+                    <span
+                      key={tag}
+                      className='border border-[#2b2b2b] bg-[#1f1f1f] px-2 py-1 font-mono text-[10px] text-[#b1b1b1] sm:text-[11px]'
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </SnapToGrid>
+      </div>
+
+      <EditorBlank lines={2} />
+
+      <div id='education'>
+        <EditorComment>Education</EditorComment>
+        <EditorBlank />
+        <div className='md:hidden'>
+          <EditorLine className='text-[rgb(247,244,190)] shadow-[inset_0_-1px_0_#2b2b2b]'>
+            {education.period}
+          </EditorLine>
+          <EditorLine className='text-white shadow-[inset_0_-1px_0_#2b2b2b]'>
+            <span className='truncate'>{education.degree}</span>
+          </EditorLine>
+        </div>
+        <EditorLine className='hidden gap-4 shadow-[inset_0_-1px_0_#2b2b2b] md:flex'>
+          <span className='min-w-[160px] text-[rgb(247,244,190)]'>
+            {education.period}
+          </span>
+          <span className='text-white'>{education.degree}</span>
+        </EditorLine>
+        <EditorLine className='text-[#9d9d9d]'>
+          <span className='truncate'>{education.school}</span>
+        </EditorLine>
+      </div>
+
+      <EditorBlank lines={2} />
+
+      <SnapToGrid>
+        <div className='grid gap-4 sm:gap-6 md:grid-cols-2'>
+          <div className='relative aspect-[4/3] overflow-hidden border border-[#2b2b2b] md:aspect-[810/945]'>
+            <Image
+              src={profile.avatar}
+              alt={profile.name}
+              fill
+              className='object-cover object-top'
+              sizes='(max-width: 768px) 100vw, 50vw'
+              priority
+            />
           </div>
 
-          <div className='grid md:grid-cols-2 gap-8'>
-            <div className='relative aspect-[810/945] border border-[#2b2b2b] overflow-hidden'>
-              <Image
-                src='https://framerusercontent.com/images/rgW6RUH4ecw4hTDGGOYr3kbJ0SU.jpg'
-                alt='About Image'
-                fill
-                className='object-cover'
-                sizes='(max-width: 768px) 100vw, 50vw'
-              />
-            </div>
-
-            <div className='border border-[#2b2b2b] p-6 flex flex-col justify-between'>
-              <div>
-                <p className='text-[#9d9d9d] font-mono text-sm font-medium mb-6'>
-                  Follow me:
-                </p>
-                <div className='flex gap-4'>
-                  {[
-                    {
-                      name: 'Facebook',
-                      href: 'https://www.facebook.com/',
-                      icon: 'https://framerusercontent.com/images/ecGEpgnqSn4AqdzMtaz3pXVgbFM.svg',
-                    },
-                    {
-                      name: 'Twitter',
-                      href: 'https://x.com/',
-                      icon: 'https://framerusercontent.com/images/NItsMNNG5RmpmuK8WJdp6m7lI.svg',
-                    },
-                    {
-                      name: 'Instagram',
-                      href: 'https://www.instagram.com/',
-                      icon: 'https://framerusercontent.com/images/IFxdGcBncA6gZ8eC2bbsWVmzmRY.svg',
-                    },
-                  ].map((social) => (
+          <div className='flex min-h-24 flex-col justify-between border border-[#2b2b2b] p-4 sm:p-6'>
+            <div>
+              <EditorLine className='text-[#9d9d9d]'>Follow me:</EditorLine>
+              <EditorBlank />
+              <EditorLine className='gap-4'>
+                {profile.socials.map((social) => {
+                  const Icon = socialIcons[social.name];
+                  return (
                     <Link
                       key={social.name}
                       href={social.href}
                       target='_blank'
-                      rel='noopener'
+                      rel='noopener noreferrer'
                       aria-label={`Social link to ${social.name}`}
-                      className='w-[18px] h-[18px] relative hover:opacity-80 transition-opacity'
+                      className='text-white transition-opacity hover:opacity-80'
                     >
-                      <Image
-                        src={social.icon}
-                        alt={`${social.name} Icon`}
-                        fill
-                        className='object-contain'
-                        sizes='18px'
-                      />
+                      <Icon className='size-4' />
                     </Link>
-                  ))}
-                </div>
-              </div>
+                  );
+                })}
+              </EditorLine>
             </div>
           </div>
         </div>
-      </div>
+      </SnapToGrid>
     </section>
   );
 }

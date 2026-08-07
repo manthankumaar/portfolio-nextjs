@@ -3,7 +3,6 @@ import { FeatureSection } from './components/main/FeatureSection';
 import { HeroSection } from './components/main/HeroSection';
 import { ServiceSection } from './components/main/ServiceSection';
 import { TechStackSection } from './components/main/TechStackSection';
-import { TestimonialsSection } from './components/main/TestimonialsSection';
 
 const Home = () => {
   return (
@@ -13,7 +12,6 @@ const Home = () => {
       <AboutSection />
       <ServiceSection />
       <TechStackSection />
-      <TestimonialsSection />
     </section>
   );
 };

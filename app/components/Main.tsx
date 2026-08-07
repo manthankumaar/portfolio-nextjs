@@ -5,17 +5,17 @@ import { LineNumbers } from './main/LineNumbers';
 import Lenis from 'lenis';
 
 export default function Main({ children }: { children: React.ReactNode }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    if (!contentRef.current) return;
+    if (!wrapperRef.current || !contentRef.current) return;
 
     const lenis = new Lenis({
-      wrapper: contentRef.current,
-      content: contentRef.current.querySelector(
-        '[data-lenis-content]'
-      ) as HTMLElement,
+      wrapper: wrapperRef.current,
+      content: contentRef.current,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
@@ -41,13 +41,18 @@ export default function Main({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <main className='h-[calc(100vh-30px)] bg-[#1f1f1f] relative overflow-hidden'>
-      <div className='absolute left-0 top-0 bottom-0 w-[50px]'>
-        <LineNumbers contentRef={contentRef} />
-      </div>
-      <div ref={contentRef} className='pl-[50px] h-full overflow-hidden'>
-        <div data-lenis-content className='h-full'>
-          <>{children}</>
+    <main className='relative min-h-0 h-full overflow-hidden bg-[#1f1f1f]'>
+      <div ref={wrapperRef} className='h-full overflow-hidden'>
+        <div ref={contentRef} data-lenis-content className='relative'>
+          <div className='pointer-events-none absolute bottom-0 left-0 top-0 w-8 overflow-hidden md:w-[50px]'>
+            <LineNumbers measureRef={bodyRef} />
+          </div>
+          <div
+            ref={bodyRef}
+            className='editor-content pl-8 font-mono md:pl-[50px]'
+          >
+            {children}
+          </div>
         </div>
       </div>
     </main>
