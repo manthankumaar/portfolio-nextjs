@@ -1,7 +1,7 @@
 import {
   EditorBlank,
   EditorComment,
-  EditorLine,
+  SnapToGrid,
 } from '@/app/components/editor/EditorLine';
 import { services } from '@/lib/portfolio';
 
@@ -11,35 +11,35 @@ export function ServiceSection() {
       <EditorComment>What I do</EditorComment>
       <EditorBlank />
 
-      {services.map((service, serviceIndex) => (
-        <div key={service.number}>
-          <EditorLine className='text-white'>
-            {service.number} {service.title}
-          </EditorLine>
-          <EditorBlank />
-          {service.features.map((feature) => (
-            <div key={feature}>
-              {/* Mobile: allow wrap so long features aren't clipped */}
-              <div className='flex gap-3 py-0.5 font-mono text-[13px] font-medium leading-6 text-[#9d9d9d] sm:hidden'>
-                <span
-                  className='mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-[#9d9d9d]'
-                  aria-hidden
-                />
-                <span className='min-w-0'>{feature}</span>
-              </div>
-              {/* sm+: keep single IDE row with truncate */}
-              <EditorLine className='hidden gap-3 text-[#9d9d9d] sm:flex'>
-                <span
-                  className='inline-block h-1 w-1 flex-shrink-0 rounded-full bg-[#9d9d9d]'
-                  aria-hidden
-                />
-                <span className='truncate'>{feature}</span>
-              </EditorLine>
-            </div>
+      <SnapToGrid>
+        <div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4'>
+          {services.map((service) => (
+            <article
+              key={service.number}
+              className='flex flex-col border border-[#2b2b2b] bg-[#181818] p-4 shadow-[inset_3px_0_0_0_rgb(247,244,190)] sm:p-5'
+            >
+              <h3 className='font-mono text-sm font-semibold text-white sm:text-base'>
+                <span className='text-[rgb(247,244,190)]'>{service.number}</span>{' '}
+                {service.title}
+              </h3>
+              <ul className='mt-4 space-y-2'>
+                {service.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className='flex gap-2.5 font-mono text-xs leading-5 text-[#9d9d9d] sm:text-[13px] sm:leading-6'
+                  >
+                    <span
+                      className='mt-2 h-1 w-1 shrink-0 rounded-full bg-[#9d9d9d]'
+                      aria-hidden
+                    />
+                    <span className='min-w-0'>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
-          {serviceIndex < services.length - 1 ? <EditorBlank lines={2} /> : null}
         </div>
-      ))}
+      </SnapToGrid>
     </section>
   );
 }

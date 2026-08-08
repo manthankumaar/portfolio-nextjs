@@ -230,22 +230,41 @@ export function AboutSection() {
       <EditorBlank lines={2} />
 
       <SnapToGrid>
-        <div className='grid gap-4 sm:gap-6 md:grid-cols-2'>
-          <div className='relative aspect-[4/3] overflow-hidden border border-[#2b2b2b] md:aspect-[810/945]'>
+        <div className='flex flex-col gap-4 sm:flex-row sm:items-stretch'>
+          <div className='relative mx-auto aspect-[3/4] w-full max-w-[220px] shrink-0 overflow-hidden border border-[#2b2b2b] sm:mx-0 sm:max-w-[240px]'>
             <Image
               src={profile.avatar}
               alt={profile.name}
               fill
               className='object-cover object-top'
-              sizes='(max-width: 768px) 100vw, 50vw'
+              sizes='240px'
             />
           </div>
 
-          <div className='flex min-h-24 flex-col justify-between border border-[#2b2b2b] p-4 sm:p-6'>
+          <div className='flex min-h-0 flex-1 flex-col justify-between gap-6 border border-[#2b2b2b] p-4 sm:p-5'>
+            <div className='space-y-3'>
+              <p className='font-mono text-sm font-medium text-white sm:text-base'>
+                {profile.name}
+              </p>
+              <p className='font-mono text-xs leading-5 text-[#9d9d9d] sm:text-sm sm:leading-6'>
+                {profile.bio}
+              </p>
+              <div className='space-y-2 font-mono text-xs text-[#b1b1b1] sm:text-sm'>
+                <p>{profile.location}</p>
+                <p>
+                  <Link
+                    href={`mailto:${profile.email}`}
+                    className='underline decoration-[#2b2b2b] underline-offset-2 transition-colors hover:text-[rgb(247,244,190)] hover:decoration-[rgba(247,244,190,0.5)]'
+                  >
+                    {profile.email}
+                  </Link>
+                </p>
+              </div>
+            </div>
+
             <div>
-              <EditorLine className='text-[#9d9d9d]'>Follow me:</EditorLine>
-              <EditorBlank />
-              <div className='flex items-center gap-1'>
+              <p className='mb-2 font-mono text-xs text-[#9d9d9d]'>Follow me</p>
+              <div className='flex flex-wrap gap-2'>
                 {profile.socials.map((social) => {
                   const Icon = socialIcons[social.name];
                   return (
@@ -255,9 +274,10 @@ export function AboutSection() {
                       target='_blank'
                       rel='noopener noreferrer'
                       aria-label={`Social link to ${social.name}`}
-                      className='inline-flex size-10 items-center justify-center text-white transition-opacity hover:opacity-80'
+                      className='inline-flex h-10 items-center gap-2 border border-[#2b2b2b] px-3 font-mono text-xs text-white transition-colors hover:border-[#444] hover:text-[rgb(247,244,190)]'
                     >
-                      <Icon className='size-4' />
+                      <Icon className='size-4 shrink-0' />
+                      {social.name}
                     </Link>
                   );
                 })}

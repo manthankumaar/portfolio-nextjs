@@ -1,8 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
-import { profile } from '@/lib/portfolio';
+import { ChatBubbleLeftRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { ChatPanel } from './ChatPanel';
 import { useChatStagger } from './useChatStagger';
 import { cn } from '@/lib/utils';
@@ -46,23 +44,17 @@ export function ChatWidget() {
         aria-label={open ? 'Close chat' : 'Open Ask Manthan chat'}
         className={cn(
           'pointer-events-auto flex size-14 items-center justify-center overflow-hidden rounded-full',
-          'border border-[#2b2b2b] bg-[#181818] shadow-[0_4px_28px_rgba(0,0,0,0.45)]',
+          'border border-[#2b2b2b] shadow-[0_4px_28px_rgba(0,0,0,0.45)]',
           'transition-transform duration-200 hover:scale-105',
-          open && 'bg-[rgb(247,244,190)] text-[#1f1f1f]'
+          open
+            ? 'bg-[rgb(247,244,190)] text-[#1f1f1f]'
+            : 'bg-[#181818] text-[rgb(247,244,190)]'
         )}
       >
         {open ? (
-          <ChatBubbleLeftRightIcon className='size-6' />
+          <XMarkIcon className='size-6' />
         ) : (
-          <span className='relative size-full'>
-            <Image
-              src={profile.avatar}
-              alt=''
-              fill
-              className='object-cover object-top'
-              sizes='56px'
-            />
-          </span>
+          <ChatBubbleLeftRightIcon className='size-6' />
         )}
       </button>
     </div>

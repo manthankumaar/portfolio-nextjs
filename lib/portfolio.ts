@@ -118,7 +118,7 @@ export const experience = [
       'Architected reusable frontend systems for a multi-tenant platform using Next.js, React, TypeScript, and Tailwind CSS, supporting dashboards for AI agents, CRM, campaigns, and analytics.',
       'Designed a module-level RBAC system with permission-aware routing, UI rendering, and API authorization, improving security and maintainability across product modules.',
       'Built an embeddable web chat widget with real-time messaging, polling fallback, lead capture, domain controls, and REST API integrations for enterprise websites.',
-      'Developed a Python monitoring platform using Playwright, Supabase, and n8n to automate data collection, detect inventory changes, and trigger notification workflows.',
+      'Built a supporting Python scraping pipeline with Playwright, Supabase, and n8n to refresh client-agent data and run lightweight unit/status checks — secondary tooling alongside the main multi-tenant product work.',
     ],
   },
   {
@@ -176,13 +176,6 @@ export const projects = [
     description:
       'Embeddable web chat with real-time messaging, polling fallback, lead capture, domain controls, and REST APIs.',
     image: '/projects/ai-chat-widget.png',
-  },
-  {
-    title: 'Inventory Monitor',
-    href: 'https://origa.io/',
-    description:
-      'Python monitoring with Playwright, Supabase, and n8n for inventory detection and notification workflows.',
-    image: '/projects/inventory-monitor.png',
   },
   {
     title: 'Web Builder',
