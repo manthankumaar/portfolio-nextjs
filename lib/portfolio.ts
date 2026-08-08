@@ -324,7 +324,26 @@ export const education = {
 } as const;
 
 export const metadataContent = {
-  title: 'Manthan Kumar — Frontend Engineer',
+  title: 'Manthan Kumar — Frontend Engineer | React, Next.js, TypeScript',
+  titleTemplate: '%s | Manthan Kumar',
   description:
-    'Frontend Engineer with nearly 3 years of experience building scalable web applications using React, Next.js, TypeScript, and JavaScript.',
+    'Frontend Engineer in Bangalore with nearly 3 years of experience building scalable web apps with React, Next.js, and TypeScript. Explore projects from Origa, ReachInbox, and OpeninApp.',
+  keywords: [
+    'Manthan Kumar',
+    'Frontend Engineer',
+    'React Developer',
+    'Next.js Developer',
+    'TypeScript',
+    'Bangalore',
+    'Bengaluru',
+    'SDE',
+    'Portfolio',
+    'Origa',
+    'ReachInbox',
+    'OpeninApp',
+  ],
+  siteName: 'Manthan Kumar Portfolio',
+  locale: 'en_IN',
+  /** Default production host; override with NEXT_PUBLIC_SITE_URL */
+  defaultSiteUrl: 'https://manthan.info',
 } as const;

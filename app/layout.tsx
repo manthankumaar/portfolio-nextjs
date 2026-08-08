@@ -1,4 +1,3 @@
-import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { IBM_Plex_Mono } from 'next/font/google';
 import Header from './components/Header';
@@ -6,7 +5,9 @@ import TopNav from './components/TopNav';
 import Aside from './components/Aside';
 import Main from './components/Main';
 import { LazyChatWidget } from './components/chat/LazyChatWidget';
-import { metadataContent } from '@/lib/portfolio';
+import { JsonLd } from './components/JsonLd';
+import { buildRootMetadata } from '@/lib/seo-metadata';
+import type { Viewport } from 'next';
 
 const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
@@ -16,15 +17,13 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: metadataContent.title,
-  description: metadataContent.description,
-};
+export const metadata = buildRootMetadata();
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  themeColor: '#1f1f1f',
 };
 
 export default function RootLayout({
@@ -37,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${plexMono.variable} antialiased h-dvh overflow-hidden grid grid-cols-1 grid-rows-[30px_36px_auto_minmax(0,1fr)] lg:grid-cols-[280px_1fr] lg:grid-rows-[30px_minmax(0,1fr)]`}
       >
+        <JsonLd />
         <Header />
         <TopNav />
         <Aside />
