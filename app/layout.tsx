@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { IBM_Plex_Mono } from 'next/font/google';
 import Header from './components/Header';
 import TopNav from './components/TopNav';
 import Aside from './components/Aside';
 import Main from './components/Main';
+import { LazyChatWidget } from './components/chat/LazyChatWidget';
 import { metadataContent } from '@/lib/portfolio';
 
 const plexMono = IBM_Plex_Mono({
@@ -18,6 +19,12 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: metadataContent.title,
   description: metadataContent.description,
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
@@ -34,6 +41,7 @@ export default function RootLayout({
         <TopNav />
         <Aside />
         <Main>{children}</Main>
+        <LazyChatWidget />
       </body>
     </html>
   );

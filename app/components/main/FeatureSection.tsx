@@ -1,8 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { projects } from '@/lib/portfolio';
-import { motion } from 'motion/react';
 import {
   EditorBlank,
   EditorLine,
@@ -23,7 +23,7 @@ export function FeatureSection() {
       <EditorBlank />
 
       <SnapToGrid>
-        <div className='grid grid-cols-3 gap-2 sm:gap-3'>
+        <div className='grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:grid-cols-4 xl:gap-4'>
           {projects.map((item) => (
             <WorkItemCard key={item.title} item={item} />
           ))}
@@ -64,21 +64,12 @@ function WorkItemCard({ item }: { item: WorkItem }) {
         </svg>
       </div>
       <div className='relative aspect-[4/3] overflow-hidden'>
-        <motion.img
+        <Image
           src={item.image}
           alt={item.title}
-          width={400}
-          height={300}
-          className='h-full w-full object-cover'
-          sizes='(max-width: 768px) 33vw, 20vw'
-          initial={{ opacity: 0, filter: 'grayscale(100%)' }}
-          animate={{ opacity: 1, filter: 'grayscale(100%)' }}
-          whileHover={{ filter: 'grayscale(0%)' }}
-          transition={{
-            duration: 0.4,
-            ease: 'easeInOut',
-            filter: { duration: 0.4, ease: 'easeInOut' },
-          }}
+          fill
+          className='object-cover grayscale transition-[filter] duration-500 ease-in-out group-hover:grayscale-0'
+          sizes='(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 360px'
         />
       </div>
     </Link>

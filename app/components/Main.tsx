@@ -80,14 +80,14 @@ export default function Main({ children }: { children: React.ReactNode }) {
         className='h-full overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]'
       >
         <div ref={contentRef} data-lenis-content className='relative'>
-          <div className='pointer-events-none absolute bottom-0 left-0 top-0 w-8 overflow-hidden md:w-[50px]'>
+          <div className='pointer-events-none absolute inset-y-0 left-0 w-8 overflow-hidden md:w-[50px]'>
             <LineNumbers measureRef={bodyRef} />
           </div>
           <div
             ref={bodyRef}
             className='editor-content pl-8 font-mono md:pl-[50px]'
           >
-            {children}
+            <div className='w-full max-w-[1440px]'>{children}</div>
           </div>
         </div>
       </div>

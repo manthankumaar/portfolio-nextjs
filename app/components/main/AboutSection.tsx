@@ -13,7 +13,7 @@ import {
 import { education, experience, profile } from '@/lib/portfolio';
 
 const slashDecoration = Array.from({ length: 25 }, () => '/').join('');
-const slashDecorationMobile = Array.from({ length: 12 }, () => '/').join('');
+const slashDecorationMobile = Array.from({ length: 8 }, () => '/').join('');
 
 const socialIcons = {
   LinkedIn: Linkedin,
@@ -24,7 +24,7 @@ export function AboutSection() {
   return (
     <section id='about-me' className='editor-section'>
       <SnapToGrid>
-        <div className='mb-8 flex w-full items-start justify-between md:mb-12'>
+        <div className='mb-8 flex w-full items-start justify-between overflow-hidden md:mb-12'>
           <div className='shrink-0 text-right'>
             <motion.h2
               className='editor-display h-12 font-mono text-[40px] font-extrabold uppercase leading-[48px] text-[#2b2b2b] md:h-24 md:text-[72px] md:leading-[96px]'
@@ -138,7 +138,7 @@ export function AboutSection() {
           <div className='flex flex-col gap-6'>
             {experience.map((exp, index) => (
               <motion.article
-                key={`${exp.company}-${exp.period}`}
+                key={`${exp.company}-${exp.product ?? 'core'}-${exp.period}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
@@ -154,6 +154,11 @@ export function AboutSection() {
                       {exp.role}{' '}
                       <span className='text-[#9d9d9d]'>@ {exp.company}</span>
                     </h3>
+                    {exp.product ? (
+                      <p className='mt-1 font-mono text-xs font-medium text-white sm:text-sm'>
+                        {exp.product}
+                      </p>
+                    ) : null}
                     <p className='mt-1 font-mono text-xs text-[#9d9d9d] sm:text-sm'>
                       {exp.period} · {exp.location}
                     </p>
@@ -204,18 +209,21 @@ export function AboutSection() {
           <EditorLine className='text-[rgb(247,244,190)] shadow-[inset_0_-1px_0_#2b2b2b]'>
             {education.period}
           </EditorLine>
-          <EditorLine className='text-white shadow-[inset_0_-1px_0_#2b2b2b]'>
-            <span className='truncate'>{education.degree}</span>
-          </EditorLine>
+          <div className='border-b border-[#2b2b2b] py-1 font-mono text-[13px] font-medium leading-6 text-white'>
+            {education.degree}
+          </div>
+          <div className='py-1 font-mono text-[13px] font-medium leading-6 text-[#9d9d9d]'>
+            {education.school}
+          </div>
         </div>
         <EditorLine className='hidden gap-4 shadow-[inset_0_-1px_0_#2b2b2b] md:flex'>
-          <span className='min-w-[160px] text-[rgb(247,244,190)]'>
+          <span className='min-w-[160px] shrink-0 text-[rgb(247,244,190)]'>
             {education.period}
           </span>
-          <span className='text-white'>{education.degree}</span>
+          <span className='min-w-0 truncate text-white'>{education.degree}</span>
         </EditorLine>
-        <EditorLine className='text-[#9d9d9d]'>
-          <span className='truncate'>{education.school}</span>
+        <EditorLine className='hidden text-[#9d9d9d] md:flex'>
+          <span className='min-w-0 truncate'>{education.school}</span>
         </EditorLine>
       </div>
 
@@ -230,7 +238,6 @@ export function AboutSection() {
               fill
               className='object-cover object-top'
               sizes='(max-width: 768px) 100vw, 50vw'
-              priority
             />
           </div>
 
@@ -238,7 +245,7 @@ export function AboutSection() {
             <div>
               <EditorLine className='text-[#9d9d9d]'>Follow me:</EditorLine>
               <EditorBlank />
-              <EditorLine className='gap-4'>
+              <div className='flex items-center gap-1'>
                 {profile.socials.map((social) => {
                   const Icon = socialIcons[social.name];
                   return (
@@ -248,13 +255,13 @@ export function AboutSection() {
                       target='_blank'
                       rel='noopener noreferrer'
                       aria-label={`Social link to ${social.name}`}
-                      className='text-white transition-opacity hover:opacity-80'
+                      className='inline-flex size-10 items-center justify-center text-white transition-opacity hover:opacity-80'
                     >
                       <Icon className='size-4' />
                     </Link>
                   );
                 })}
-              </EditorLine>
+              </div>
             </div>
           </div>
         </div>

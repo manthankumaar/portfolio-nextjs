@@ -11,7 +11,7 @@ export default function Aside() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside className='border-b-[0.5px] border-white/30 bg-[#181818] px-4 py-3 lg:max-h-none lg:overflow-visible lg:border-b-0 lg:border-r-[0.5px] lg:px-[30px] lg:py-[30px]'>
+    <aside className='min-h-0 border-b-[0.5px] border-white/30 bg-[#181818] px-4 py-3 lg:overflow-y-auto lg:border-b-0 lg:border-r-[0.5px] lg:px-[30px] lg:py-[30px]'>
       <div className='flex items-center justify-between gap-3'>
         <BasicDetails />
         <button

@@ -141,6 +141,12 @@ body {
   }
 }
 
+@media (min-width: 1280px) {
+  .editor-section {
+    padding: 64px 48px;
+  }
+}
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

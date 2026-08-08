@@ -14,7 +14,7 @@ export function TechStackSection() {
       <EditorBlank />
 
       <SnapToGrid>
-        <div className='grid grid-cols-2 border border-[#2b2b2b] bg-[#1f1f1f] sm:grid-cols-3 lg:grid-cols-4'>
+        <div className='grid grid-cols-2 border border-[#2b2b2b] bg-[#1f1f1f] sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6'>
           {techStack.map((tech) => (
             <div
               key={tech.name}
